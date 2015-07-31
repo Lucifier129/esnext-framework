@@ -6,10 +6,7 @@ export let onAdd = function() {
         return
     }
     this.value = ''
-    return {
-        type: 'add',
-        title: value
-    }
+    return value
 }
 
 export let onEdited = function() {
@@ -30,6 +27,7 @@ export let onEdited = function() {
             title: value
         }
     }
+    return {}
 }
 
 let blur = function() {
@@ -48,16 +46,11 @@ export let onEditing = function() {
 export let onToggle = function() {
     let $todoElem = this::closest('li')
     return {
-        type: 'toggle',
         id: $todoElem.data('id'),
         completed: this.checked
     }
 }
 
 export let onRemove = function() {
-    let $todoElem = this::closest('li')
-    return {
-    	type: 'remove',
-    	id: $todoElem.data('id')
-    }
+    return this::closest('li').data('id')
 }

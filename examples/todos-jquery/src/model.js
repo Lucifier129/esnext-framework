@@ -8,41 +8,6 @@ export default class Model {
     save() {
         localStorage.setItem(this.name, JSON.stringify(this.todos))
     }
-    onAction(action) {
-        if (!action::isObject()) {
-            return
-        }
-        let hasChange = true
-        switch (action.type) {
-            case 'add':
-                this.addTodo(action.title)
-                break
-            case 'remove':
-                this.removeTodo(action.id)
-                break
-            case 'update':
-                this.updateTodo({
-                    id: action.id,
-                    title: action.title
-                })
-                break
-            case 'toggle':
-                this.updateTodo({
-                    id: action.id,
-                    completed: action.completed
-                })
-                break
-            case 'clear':
-                this.clearCompleted()
-                break
-            case 'toggleAll':
-                this.toggleAll(action.completed)
-                break
-            default:
-                hasChange = false
-        }
-        hasChange && this.save()
-    }
     addTodo(title) {
         let now = new Date()
         let todo = {

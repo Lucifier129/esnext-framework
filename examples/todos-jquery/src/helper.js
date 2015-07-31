@@ -37,7 +37,7 @@ export let pipe = function(next = noop) {
 }
 
 export let then = function(next) {
-    if (this::isFunction) {
+    if (this::isFunction()) {
         return (...args) => {
             return Promise.resolve(this(...args)).then(next)
         }
